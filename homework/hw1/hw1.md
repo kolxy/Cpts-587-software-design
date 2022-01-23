@@ -55,6 +55,7 @@ public abstract class Shape {
 public class Circle extends Shape {
     double radius;
 
+    @Override
     public double getArea() {
         return Math.PI * Math.pow(radius, 2);
     }
@@ -64,6 +65,7 @@ public class Rectangle extends Shape {
     double width;
     double height;
 
+    @Override
     public double getArea() {
         return width * height;
     }
@@ -76,3 +78,100 @@ The relationship is called inheritance. We need `Shape` class to generalize a lo
 We cannot have an "unspecified" shape because `Shape` is an abstract class. It only generalizes the attributes of specific shape and cannot be instantiated by itself. 
 
 ## 4
+Add `Style` to previous code.
+
+```java
+public class Style {
+    // Notice these are public fields
+    // I'm too lazy to write all the getters and setters
+    public String color;
+    public String fill;
+    public int shades;
+    public int outline;
+
+    public Style() {
+        // default style
+        color = "white";
+        fill = "black";
+        shades = 1;
+        outline = 1;
+    }
+}
+
+public abstract class Shape {
+    double centerX;
+    double centerY;
+    Style style;
+    
+    public Shape() {style = new Style();}
+
+    public abstract double getArea();
+
+    /**
+     * @return double[] center coordinates as [x, y]
+     */
+    public double[] getCenter() {
+        return {centerX, centerY};
+    }
+}
+
+public class Circle extends Shape {
+    double radius;
+
+    @Override
+    public double getArea() {
+        return Math.PI * Math.pow(radius, 2);
+    }
+}
+
+public class Rectangle extends Shape {
+    double width;
+    double height;
+
+    @Override
+    public double getArea() {
+        return width * height;
+    }
+}
+```
+
+Since all shapes have style, `Shape` can store the `Style` class.
+
+## 5
+Should Style be its own class? (Hint: yes). What is the relationship between Shape and Style in
+your code/design?
+
+Yes, as already written in **4**. Shape and style should be a composition relationship. Every shape must have a style (including default), but style cannot exist by itself. We could also say that there is a 1-to-1 association relationship because every shape only has one style.
+
+## 6
+`Canvas` class and `draw()` function.
+```java
+public abstract class Shape {
+    /* previous declared fields and methods */
+
+    public static Shape createShape(String shape) {
+        if (shape == "circle") {
+            return new Circle();
+        } else if (shape == "rectangle") {
+            return new Rectangle();
+        }
+    }
+}
+public class Canvas {
+    public List<Shape> shapeList;
+    public void render() {
+        /* user chooses shape, assume user picks circle */
+        Shape s = Shape.createShape("circle");
+        /* get click coordinates x, y */
+        s.centerX = x;
+        s.centerY = y;
+        shapeList.add(s);
+        draw(s);
+    }
+
+    public void draw(Shape shape) { /* draw the shape in canvas*/ }
+}
+```
+
+## 7
+The relationship between `Canvas` and `Shape` should be 1-to-many association and composition where canvas contains shapes. `Canvas` contains a list of `Shape` whereas `Shape` only contains one instance of `Style` even though they both have composition relationship. When `Canvas` instance is deleted, all of its shapes `shapeList` should be deleted too. As mentioned in **5**, style cannot exist by itself. `Style` instances would also be deleted as they are stored in `Shape`.
