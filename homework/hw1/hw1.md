@@ -160,20 +160,32 @@ public abstract class Shape {
             return new Rectangle();
         }
     }
+
+    /**
+     * subclass draw its own shape
+     */
+    public abstract void draw(Canvas canvas);
 }
 public class Canvas {
     public List<Shape> shapeList;
     public void render() {
-        /* user chooses shape, assume user picks circle */
-        Shape s = Shape.createShape("circle");
-        /* get click coordinates x, y */
+        // choose shape;
+        String input = getUserInputShape();
+        Shape s = Shape.createShape(input);
+        // get x and y for coordinates
+        int x = getUserInputX(); y = getUserInputY();
         s.centerX = x;
         s.centerY = y;
         shapeList.add(s);
-        draw(s);
+        draw();
     }
 
-    public void draw(Shape shape) { /* draw the shape in canvas*/ }
+    public void draw(Shape shape) {
+        clearCanvas();
+        for (Shape shape : shapeLiist) {
+            shape.draw();
+        }
+    }
 }
 ```
 
