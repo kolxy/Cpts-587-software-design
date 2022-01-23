@@ -55,6 +55,7 @@ public abstract class Shape {
 public class Circle extends Shape {
     double radius;
 
+    /* assume there is a constructor defaults radius */
     @Override
     public double getArea() {
         return Math.PI * Math.pow(radius, 2);
@@ -65,6 +66,7 @@ public class Rectangle extends Shape {
     double width;
     double height;
 
+    /* assume there is a constructor defaults width and height */
     @Override
     public double getArea() {
         return width * height;
@@ -118,6 +120,7 @@ public abstract class Shape {
 public class Circle extends Shape {
     double radius;
 
+    /* assume there is a constructor defaults radius */
     @Override
     public double getArea() {
         return Math.PI * Math.pow(radius, 2);
@@ -128,6 +131,7 @@ public class Rectangle extends Shape {
     double width;
     double height;
 
+    /* assume there is a constructor defaults width and height */
     @Override
     public double getArea() {
         return width * height;
@@ -174,4 +178,6 @@ public class Canvas {
 ```
 
 ## 7
-The relationship between `Canvas` and `Shape` should be 1-to-many association and composition where canvas contains shapes. `Canvas` contains a list of `Shape` whereas `Shape` only contains one instance of `Style` even though they both have composition relationship. When `Canvas` instance is deleted, all of its shapes `shapeList` should be deleted too. As mentioned in **5**, style cannot exist by itself. `Style` instances would also be deleted as they are stored in `Shape`.
+The relationship between `Canvas` and `Shape` should be 1-to-many association and composition where canvas contains shapes. `Canvas` contains a list of `Shape` whereas `Shape` only contains one instance of `Style` even though they both have composition relationship. 
+
+When `Canvas` instance is deleted, all of its shapes `shapeList` should be deleted too. As mentioned in **5**, style cannot exist by itself. `Style` instances would also be deleted as they are stored in `Shape`.
