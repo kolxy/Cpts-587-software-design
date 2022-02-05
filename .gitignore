@@ -1,5 +1,6 @@
 textbook/
 project/
+*.drawio
 
 *#
 *.iml
