@@ -34,3 +34,26 @@ public class Canvas{
     }
 }
 ```
+
+## 4
+Scenario: assume that shape style cannot be changed after creation.
+
+ We could have an abstract factory `ShapeFactory`, and it has subclass such as `FillShapeFactory`, `OutlineShapeFactory`, `ShadesShapeFactory`. In this case, the same style can be applied to all the shapes created by the same factory. Factory method does not have the ability to enforce creating different shapes that belong to the same families.
+
+ ## 5
+ For the project, I think we could use abstract factory method in enemy creation. Assume that the game has different difficulty levels, then the factories would create all enemies of same difficulty. In this case the code would look like 
+ ```java
+ public EasyEnemyFactory extends EnemyFactory {}
+ public MediumEnemyFactory extends EnemyFactory {}
+ public HardEnemyFactory extends EnemyFactory {}
+
+EnemyFactory ef;
+if (level == "easy")
+    ef = new EasyEnemyFactory();
+else if (level == "medium") 
+    ef = new MediumEnemyFactory();
+else
+    ef = new HardEnemyFactory();
+
+ef.createEnemy();
+ ```
