@@ -1,3 +1,3 @@
 # Cpts-587-software-design
 
-Project repository [kolxy/space-shooter-game](https://github.com/kolxy/space-shooter-game)
+*Do NOT copy my work, Professor Zeng is aware of the existence of this repository* :)
