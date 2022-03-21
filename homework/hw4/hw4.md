@@ -14,6 +14,9 @@ The program is using factory method pattern + composite pattern.
 | Concrete Factory | RegularFactory, ConeFactory, BucketFactory, ScreenDoorFactory |
 | Product | Zombie |
 | Concrete Product | RegularZombie, ConeZombie, BucketZombie, ScreenDoorZombie |
+
+| Pattern | Class |
+| --- | ----------- |
 | Component | Zombie |
 | Leaf | RegularZombie |
 | Composite | ConeZombie, BucketZombie, ScreenDoorZombie |
