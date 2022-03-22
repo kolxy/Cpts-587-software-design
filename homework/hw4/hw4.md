@@ -4,7 +4,7 @@ Xinyu Liu
 Mar 2022
 
 ## 1
-![class_diagram](./assets/fig1.png)
+![class_diagram](https://raw.githubusercontent.com/kolxy/Cpts-587-software-design/master/homework/hw4/assets/fig1.png)
 
 ## 2
 The program is using factory method pattern + composite pattern.
@@ -28,6 +28,7 @@ cd src/
 javac Main.java
 java Main
 ```
+Please follow console prompt for correct input. This program cannot handle weird input.
 
 ## 4
 In `takeDamage()`, take the remaining damage on the object itself after damaging all child objects.
