@@ -1,4 +1,4 @@
-import entity.Zombie;
+import entity.GameObject;
 import factory.*;
 
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static List<Zombie> zombieList = new ArrayList<>();
+    public static List<GameObject> objectList = new ArrayList<>();
     public static ZombieFactory[] factories;
 
     public static void main(String[] args) {
@@ -50,7 +50,7 @@ public class Main {
         System.out.println("4. ScreenDoor");
         System.out.print("Choose type: ");
         int type = in.nextInt();
-        zombieList.add(factories[type].create());
+        objectList.add(factories[type].create());
     }
 
     /**
@@ -63,11 +63,11 @@ public class Main {
         int damage = in.nextInt();
         int round = 0;
         System.out.println("Round " + round + ": " + getZombieInfo());
-        while (!zombieList.isEmpty()) {
+        while (!objectList.isEmpty()) {
             // Front zombie take damage
-            Zombie zombie = zombieList.remove(0).takeDamage(damage);
-            if (zombie != null) { // Zombie still alive
-                zombieList.add(0, zombie);
+            int remainHP = objectList.get(0).takeDamage(damage);
+            if (remainHP == 0) { // Zombie dead
+                objectList.remove(0);
             }
             round++;
             System.out.println("Round " + round + ": " + getZombieInfo());
@@ -79,6 +79,6 @@ public class Main {
      * @return
      */
     public static String getZombieInfo() {
-        return Arrays.toString(zombieList.toArray());
+        return Arrays.toString(objectList.toArray());
     }
 }

@@ -1,11 +1,12 @@
 package factory;
 
-import entity.ConeZombie;
+import entity.Cone;
+import entity.GameObject;
 import entity.Zombie;
 
 public class ConeFactory implements ZombieFactory{
     @Override
-    public Zombie create() {
-        return new ConeZombie();
+    public GameObject create() {
+        return new Zombie(new Cone());
     }
 }

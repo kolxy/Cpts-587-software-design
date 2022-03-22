@@ -1,11 +1,11 @@
 package factory;
 
-import entity.Zombie;
+import entity.GameObject;
 
 public interface ZombieFactory {
     /**
      *
-     * @return a Zombie
+     * @return a GameObject
      */
-    public Zombie create();
+    public GameObject create();
 }
