@@ -14,10 +14,19 @@ public class GameObjectManager {
         objectList = new ArrayList<>();
     }
 
+    /**
+     * Add zombie to the roster
+     * @param zombie
+     */
     public void addZombie(Zombie zombie) {
         objectList.add(zombie);
     }
 
+    /**
+     * Update the status of the nearest zombie
+     * Happens on Zombie.die()
+     * @param newZombie
+     */
     public void update(Zombie newZombie) {
         if (newZombie == null) {
             objectList.remove(0);
@@ -26,6 +35,10 @@ public class GameObjectManager {
         }
     }
 
+    /**
+     * return the first zombie
+     * @return Zombie
+     */
     public Zombie getNearest() {
         return objectList.get(0);
     }
